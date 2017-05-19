@@ -1,3 +1,8 @@
+[![Travis CI](https://travis-ci.org/frobware/grawler.svg?branch=master)](https://travis-ci.org/frobware/grawler)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/frobware/grawler)
+[![Coverage Status](http://codecov.io/github/frobware/grawler/coverage.svg?branch=master)](http://codecov.io/github/frobware/grawler?branch=master)
+[![Report Card](https://goreportcard.com/badge/github.com/frobware/grawler)](https://goreportcard.com/report/github.com/frobware/grawler)
+
 # Web Crawler
 
 An example of webcrawling using Go.
