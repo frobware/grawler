@@ -12,7 +12,7 @@ A webcrawler library written in Go.
 	$ go get -u golang.org/x/net/html
 	$ go get -u github.com/frobware/grawler/...
 
-The build binary `sitemap` is an example of using the library.
+The binary `sitemap` is an example of using the library.
 
 Given a URL it will print a basic sitemap for the given domain,
 listing the links each page has, together with a list of assets found
