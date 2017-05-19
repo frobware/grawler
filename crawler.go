@@ -120,7 +120,7 @@ func Crawl(URL string, maxWorkers int, fetcher Fetcher, followLink FollowLink) [
 	results := make(chan *result)
 	seen := make(map[string]bool)
 
-	pending := []request{request{
+	pending := []request{{
 		Fetcher: fetcher,
 		URL:     URL,
 	}}
