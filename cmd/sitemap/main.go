@@ -17,7 +17,7 @@ func init() {
 	flag.IntVar(&concurrency, "j", 50, "number of concurrent downloads")
 }
 
-var Usage = func() {
+var usage = func() {
 	fmt.Fprintf(os.Stderr, "%s [ -j <concurrency> ] URL\n", os.Args[0])
 	flag.PrintDefaults()
 }
@@ -36,7 +36,7 @@ func main() {
 	flag.Parse()
 
 	if len(flag.Args()) < 1 {
-		Usage()
+		usage()
 		os.Exit(1)
 	}
 

@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// Fetcher fetches HTML documents.
 type Fetcher interface {
 	// Fetch returns a reader for the body of the downloaded URL,
 	// or error if it could not be downloaded. The caller is
