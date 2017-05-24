@@ -56,7 +56,7 @@ func (f badFetcher) Fetch(url string) (io.ReadCloser, error) {
 	return f.defaultFetcher.Fetch(url)
 }
 
-func startHTTPServer(t *testing.T, dir string) string {
+func startHTTPServer(t *testing.T, dir string) (*http.Server, string) {
 	rootdir := fmt.Sprintf("testdata/%s", dir)
 
 	if _, err := os.Stat(rootdir); err != nil {
@@ -83,7 +83,7 @@ func startHTTPServer(t *testing.T, dir string) string {
 		}
 	}()
 
-	return fmt.Sprintf("http://127.0.0.1:%d", port)
+	return server, fmt.Sprintf("http://127.0.0.1:%d", port)
 }
 
 // Returns the name of the TestXXX function from the call stack.
@@ -189,7 +189,8 @@ func assertPageContainsAssets(t *testing.T, rootURL string, page *grawler.Page, 
 }
 
 func TestAssetsNoLinks(t *testing.T) {
-	rootURL := startHTTPServer(t, testName())
+	server, rootURL := startHTTPServer(t, testName())
+	defer server.Close()
 
 	if testing.Short() {
 		downloaders = []int{10}
@@ -222,7 +223,8 @@ func TestAssetsNoLinks(t *testing.T) {
 }
 
 func TestLinksNoAssets(t *testing.T) {
-	rootURL := startHTTPServer(t, testName())
+	server, rootURL := startHTTPServer(t, testName())
+	defer server.Close()
 
 	if testing.Short() {
 		downloaders = []int{10}
@@ -267,7 +269,8 @@ func TestLinksNoAssets(t *testing.T) {
 }
 
 func TestLinksAndLoops(t *testing.T) {
-	rootURL := startHTTPServer(t, testName())
+	server, rootURL := startHTTPServer(t, testName())
+	defer server.Close()
 
 	if testing.Short() {
 		downloaders = []int{10}
@@ -285,7 +288,8 @@ func TestLinksAndLoops(t *testing.T) {
 }
 
 func TestMultipleLinks(t *testing.T) {
-	rootURL := startHTTPServer(t, testName())
+	server, rootURL := startHTTPServer(t, testName())
+	defer server.Close()
 
 	if testing.Short() {
 		downloaders = []int{10}
@@ -354,7 +358,8 @@ func TestMultipleLinks(t *testing.T) {
 }
 
 func TestMultipleAssets(t *testing.T) {
-	rootURL := startHTTPServer(t, testName())
+	server, rootURL := startHTTPServer(t, testName())
+	defer server.Close()
 
 	if testing.Short() {
 		downloaders = []int{10}
@@ -382,7 +387,8 @@ func TestMultipleAssets(t *testing.T) {
 }
 
 func TestNoLinksNoAssets(t *testing.T) {
-	rootURL := startHTTPServer(t, testName())
+	server, rootURL := startHTTPServer(t, testName())
+	defer server.Close()
 
 	if testing.Short() {
 		downloaders = []int{10}
@@ -424,7 +430,8 @@ func TestNoLinksNoAssets(t *testing.T) {
 }
 
 func TestFetchError(t *testing.T) {
-	rootURL := startHTTPServer(t, testName())
+	server, rootURL := startHTTPServer(t, testName())
+	defer server.Close()
 
 	if testing.Short() {
 		downloaders = []int{10}
