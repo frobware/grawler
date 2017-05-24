@@ -2,6 +2,7 @@ package grawler
 
 import (
 	"net/url"
+	"strings"
 	"sync"
 )
 
@@ -26,7 +27,7 @@ func resolveLink(base *url.URL, link string) (string, error) {
 		return "", err
 	}
 
-	return base.ResolveReference(url).String(), nil
+	return strings.Split(base.ResolveReference(url).String(), "#")[0], nil
 }
 
 func dedupeAssets(assets []string) []string {
