@@ -418,13 +418,13 @@ func TestNoLinksNoAssets(t *testing.T) {
 		}
 
 		if !reflect.DeepEqual(index.Links, expectedLinks) {
-			t.Errorf("page links [%v] do not match expected links [%v]", index.Links, expectedLinks)
+			t.Errorf("expected %v, got %v", expectedLinks, index.Links)
 		}
 
 		expectedAssets := []string{}
 
 		if !reflect.DeepEqual(index.Assets, expectedAssets) {
-			t.Errorf("page assets [%v] do not match expected assets [%v]", index.Assets, expectedAssets)
+			t.Errorf("expected %v, got %v", expectedAssets, index.Assets)
 		}
 	}
 }
