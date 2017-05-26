@@ -54,11 +54,11 @@ func findLinksAndAssets(rdr io.Reader) ([]string, []string) {
 	doc := html.NewTokenizer(rdr)
 
 	for tokenType := doc.Next(); tokenType != html.ErrorToken; tokenType = doc.Next() {
-		token := doc.Token()
 		switch tokenType {
 		case html.StartTagToken:
 			fallthrough
 		case html.SelfClosingTagToken:
+			token := doc.Token()
 			// TODO XXX
 			// Which HTML elements can have href=? and/or src=?
 			// https://www.w3.org/TR/REC-html40/index/attributes.html
